@@ -3,8 +3,9 @@ package HierarchicalOrganization;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Manager {
+public class Manager implements Employee{
     private String name;
+    private double totalSalary;
     private List<Employee> employees;
 
     public Manager(String name) {
@@ -17,13 +18,17 @@ public class Manager {
         this.employees.add(employee);
     }
 
-    public void showDetails()
-    {
-        double totalSalary = 0;
+    @Override
+    public double getSalary() {
         for (Employee employee: employees) {
-            System.out.println(employee.showDetails());
             totalSalary += employee.getSalary();
         }
-        System.out.println(String.format("Manager: %s, SalarioTotal: $ %s", this.name, totalSalary));
+        return totalSalary;
+    }
+
+    public void showDetails()
+    {
+        this.employees.forEach(Employee::showDetails);
+        System.out.println(String.format("Manager: %s, Salario Total: $ %s", this.name, this.getSalary()));
     }
 }

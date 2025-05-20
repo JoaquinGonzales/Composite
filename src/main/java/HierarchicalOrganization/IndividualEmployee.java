@@ -15,7 +15,7 @@ public class IndividualEmployee implements Employee{
     }
 
     @Override
-    public String showDetails() {
-        return String.format("Empleado: %s, Salario: $ %s ",this.name, this.salary);
+    public void showDetails() {
+        System.out.println(String.format("Empleado: %s, Salario: $ %s ",this.name, this.salary));
     }
 }

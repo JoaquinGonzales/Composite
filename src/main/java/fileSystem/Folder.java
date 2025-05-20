@@ -1,14 +1,11 @@
 package fileSystem;
-
-import fileSystem.File;
-import fileSystem.FileSystemComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Folder {
+public class Folder implements FileSystemComponent{
 
     private String name;
+    private int totalSize;
     private List<FileSystemComponent> files;
 
     public Folder(String name) {
@@ -22,13 +19,20 @@ public class Folder {
         this.files.add(file);
         }
 
+    @Override
+    public int getSize() {
+        for (FileSystemComponent file: files) {
+            totalSize += file.getSize();
+        }
+        return totalSize;
+    }
+
+    @Override
     public void showDetails()
     {
-        int aux = 0;
         for (FileSystemComponent file: files) {
-            System.out.println(file.showDetails());
-            aux += file.getSize();
+            file.showDetails();
         }
-        System.out.println(String.format("Carpeta: %s, tamaño total: %s KB",this.name, aux ));
+        System.out.println(String.format("Carpeta: %s, tamaño total: %s KB",this.name, this.getSize()));
     }
 }

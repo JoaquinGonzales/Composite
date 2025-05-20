@@ -15,7 +15,9 @@ public class File implements FileSystemComponent {
     }
 
     @Override
-    public String showDetails() {
-        return String.format("Archivo: %s, Tamaño: %s KB", this.name, this.size);
+    public void showDetails() {
+        System.out.println(String.format("Archivo: %s, Tamaño: %s KB", this.name, this.size));
     }
+
+
 }
